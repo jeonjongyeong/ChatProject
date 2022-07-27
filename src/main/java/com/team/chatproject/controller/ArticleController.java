@@ -2,16 +2,16 @@ package com.team.chatproject.controller;
 
 import com.team.chatproject.domain.Article;
 import com.team.chatproject.servise.ArticleServise;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
+@Slf4j
 @Controller
 @RequestMapping("/article")
 public class ArticleController {
@@ -19,18 +19,13 @@ public class ArticleController {
     @Autowired
     private ArticleServise articleServise;
 
-    @RequestMapping("/create")
-    @ResponseBody
-    public String doCreateArticle(long memberId,String title,String body){
-        articleServise.create(memberId,title,body);
-        return "추가 되었습니다.";
-    }
 
     // 전체 조회
     @RequestMapping("/list")
     public String showList(Model model) {
         List<Article> articles = articleServise.getList();
         model.addAttribute("articles", articles);
+        log.info(articles.toString());
         return "/article/article_list";
     }
 
@@ -42,10 +37,16 @@ public class ArticleController {
         return "/article/article_detail";
     }
 
-    @RequestMapping("/test")
-    @ResponseBody
-    public String showtest() {
-        return "hello world!";
+    // 게시글 생성
+    @GetMapping("/new")
+    public String newArticle() {
+        return "/article/article_new";
+    }
+
+    @PostMapping("/create")
+    public String createArticle(@RequestBody String title,@RequestBody String body) {
+        this.articleServise.create(title, body);
+        return "redirect:/article/list";
     }
 
 

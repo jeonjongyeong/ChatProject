@@ -5,12 +5,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Article {
 
     @Id
@@ -23,9 +23,12 @@ public class Article {
     @Column
     private String body ;
 
+
 //    private long memberId;
 
-//    private LocalDateTime regDate;
-//    private LocalDateTime updateDate;
 
+    private LocalDateTime regDate;
+
+
+    private LocalDateTime updateDate;
 }

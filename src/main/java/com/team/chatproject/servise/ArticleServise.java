@@ -13,17 +13,6 @@ public class ArticleServise {
     @Autowired
     private ArticleRepository articleRepository;
 
-    public void create(long memberId, String title, String body) {
-        Article article = new Article();
-//        article.setMemberId(memberId);
-        article.setTitle(title);
-        article.setBody(body);
-//        article.setRegDate(LocalDateTime.now());
-//        article.setUpdateDate(LocalDateTime.now());
-
-        articleRepository.save(article);
-    }
-
 
     public List<Article> getList() {
         List<Article> articles = articleRepository.findAll();
@@ -32,5 +21,15 @@ public class ArticleServise {
 
     public Article getDetail(Long id) {
        return articleRepository.findById(id).orElse(null);
+    }
+
+    public void create(String title, String body) {
+        Article article = new Article();
+//        article.setMemberId(memberId);
+        article.setTitle(title);
+        article.setBody(body);
+        article.setRegDate(LocalDateTime.now());
+        article.setUpdateDate(LocalDateTime.now());
+        this.articleRepository.save(article);
     }
 }
