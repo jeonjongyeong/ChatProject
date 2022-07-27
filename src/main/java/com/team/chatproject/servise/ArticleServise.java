@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ArticleServise {
@@ -21,5 +22,11 @@ public class ArticleServise {
         article.setUpdateDate(LocalDateTime.now());
 
         articleRepository.save(article);
+    }
+
+
+    public List<Article> getArticle() {
+        List<Article> articles = articleRepository.findAll();
+        return articles;
     }
 }
