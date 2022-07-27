@@ -25,8 +25,12 @@ public class ArticleServise {
     }
 
 
-    public List<Article> getArticle() {
+    public List<Article> getList() {
         List<Article> articles = articleRepository.findAll();
         return articles;
+    }
+
+    public Article getDetail(Long id) {
+       return articleRepository.findById(id).orElse(null);
     }
 }
