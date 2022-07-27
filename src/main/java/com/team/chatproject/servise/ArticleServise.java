@@ -15,17 +15,17 @@ public class ArticleServise {
 
     public void create(long memberId, String title, String body) {
         Article article = new Article();
-        article.setMemberId(memberId);
+//        article.setMemberId(memberId);
         article.setTitle(title);
         article.setBody(body);
-        article.setRegDate(LocalDateTime.now());
-        article.setUpdateDate(LocalDateTime.now());
+//        article.setRegDate(LocalDateTime.now());
+//        article.setUpdateDate(LocalDateTime.now());
 
         articleRepository.save(article);
     }
 
 
-    public List<Article> getArticles() {
+    public List<Article> getArticle() {
         List<Article> articles = articleRepository.findAll();
         return articles;
     }

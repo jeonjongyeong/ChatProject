@@ -28,8 +28,9 @@ public class ArticleController {
     // 전체 조회
     @RequestMapping("/list")
     public String showList(Model model) {
-        List<Article> articles = articleServise.getArticles();
-        model.addAttribute(articles);
+        List<Article> article = articleServise.getArticle();
+        model.addAttribute("article", article);
+
         return "/article/article_list";
     }
 
