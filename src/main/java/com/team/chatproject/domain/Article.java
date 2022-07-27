@@ -15,8 +15,6 @@ public class Article {
 
     private long memberId;
 
-    private String boardId;
-
     private LocalDateTime regDate;
     private LocalDateTime updateDate;
 
