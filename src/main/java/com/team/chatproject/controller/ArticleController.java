@@ -5,6 +5,7 @@ import com.team.chatproject.servise.ArticleServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,9 +29,17 @@ public class ArticleController {
     // 전체 조회
     @RequestMapping("/list")
     public String showList(Model model) {
-        List<Article> article = articleServise.getArticle();
-        model.addAttribute("article", article);
+        List<Article> articles = articleServise.getList();
+        model.addAttribute("articles", articles);
         return "/article/article_list";
+    }
+
+    // 상세 조회
+    @RequestMapping("/detail/{id}")
+    public String showDetail(Model model, @PathVariable Long id) {
+        Article article = articleServise.getDetail(id);
+        model.addAttribute("article", article);
+        return "/article/article_detail";
     }
 
     @RequestMapping("/test")
