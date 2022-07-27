@@ -25,7 +25,7 @@ public class ArticleServise {
     }
 
 
-    public List<Article> getArticle() {
+    public List<Article> getArticles() {
         List<Article> articles = articleRepository.findAll();
         return articles;
     }
