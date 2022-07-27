@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Service
 public class ArticleServise {
     @Autowired
-    ArticleRepository articleRepository;
+    private ArticleRepository articleRepository;
 
     public void create(long memberId, String title, String body) {
         Article article = new Article();
