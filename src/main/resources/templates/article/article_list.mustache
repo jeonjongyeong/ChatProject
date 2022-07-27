@@ -1,23 +1,26 @@
-<!doctype html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{{>layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">번호</th>
+        <th scope="col">제목</th>
+        <th scope="col">내용</th>
+    </tr>
+    </thead>
+    {{#article}}
+        <tbody>
+        <tr>
+            <th>{{id}}</th>
+            <td>{{title}}</td>
+            <td>{{body}}</td>
+        </tr>
+        </tbody>
+    {{/article}}
+</table>
+
+{{>layouts/header}}
 
 
-<!-- 내용 -->
-{{#article}}
-    <div>{{id}}</div>
-    <div>{{title}}</div>
-    <div>{{body}}</div>
-
-{{/article}}
 
 
-</body>
-</html>

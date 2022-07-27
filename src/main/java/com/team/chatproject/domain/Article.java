@@ -1,8 +1,6 @@
 package com.team.chatproject.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +9,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Article {
 
     @Id
@@ -23,9 +23,9 @@ public class Article {
     @Column
     private String body ;
 
-    private long memberId;
+//    private long memberId;
 
-    private LocalDateTime regDate;
-    private LocalDateTime updateDate;
+//    private LocalDateTime regDate;
+//    private LocalDateTime updateDate;
 
 }

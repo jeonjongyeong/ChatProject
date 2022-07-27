@@ -29,8 +29,8 @@ public class ArticleController {
     @RequestMapping("/list")
     public String showList(Model model) {
         List<Article> article = articleServise.getArticle();
-        model.addAttribute(article);
-        return "article_list";
+        model.addAttribute("article", article);
+        return "/article/article_list";
     }
 
     @RequestMapping("/test")
