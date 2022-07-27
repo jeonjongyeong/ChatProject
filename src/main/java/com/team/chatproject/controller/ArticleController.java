@@ -1,10 +1,14 @@
 package com.team.chatproject.controller;
 
+import com.team.chatproject.domain.Article;
 import com.team.chatproject.servise.ArticleServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 
 @Controller
@@ -21,10 +25,12 @@ public class ArticleController {
         return "추가 되었습니다.";
     }
 
+    // 전체 조회
     @RequestMapping("/list")
-    @ResponseBody
-    public String showList() {
-        return "hello world!";
+    public String showList(Model model) {
+        List<Article> article = articleServise.getArticle();
+        model.addAttribute(article);
+        return "article_list";
     }
 
     @RequestMapping("/test")
