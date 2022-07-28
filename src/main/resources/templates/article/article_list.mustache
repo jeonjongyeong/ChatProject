@@ -1,23 +1,23 @@
 {{>layouts/header}}
 <div class="container">
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">번호</th>
-        <th scope="col">제목</th>
-        <th scope="col">내용</th>
-    </tr>
-    </thead>
-    {{#articles}}
-        <tbody>
+    <table class="table">
+        <thead>
         <tr>
-            <th>{{id}}</th>
-            <td><a href="/article/detail/{{id}}">{{title}}</a></td>
-            <td>{{body}}</td>
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">내용</th>
         </tr>
-    {{/articles}}
+        </thead>
+        <tbody>
+        {{#articles}}
+            <tr>
+                <th>{{id}}</th>
+                <td><a href="/article/detail/{{id}}">{{title}}</a></td>
+                <td>{{body}}</td>
+            </tr>
+        {{/articles}}
         </tbody>
-</table>
+    </table>
 </div>
 {{>layouts/footer}}
 

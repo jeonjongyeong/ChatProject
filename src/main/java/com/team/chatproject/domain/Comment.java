@@ -1,33 +1,27 @@
 package com.team.chatproject.domain;
 
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
-@Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class Article {
-
+@Entity
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
-    private String title ;
+    private String comments;
 
     @Column
-    private String body ;
-
-    private long memberId;
-
-    private  int viewCount;
+    private long articleId;
 
     private LocalDateTime regDate;
     private LocalDateTime updateDate;
-
 }

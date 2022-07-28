@@ -1,23 +1,37 @@
 {{>layouts/header}}
-<div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">내용</th>
-        </tr>
-        </thead>
-        {{#article}}
-        <tbody>
-        <tr>
-            <th>{{id}}</th>
-            <td >{{title}}</td>
-            <td>{{body}}</td>
-        </tr>
-        {{/article}}
-    </tbody>
-    </table>
+<div class="container my-3">
+    {{#article}}
+        <h3 class="border-bottom py-2">{{title}}</h3>
+        <div class="d-flex justify-content-end">조회수 : {{viewCount}}</div>
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;">
+                    {{body}}
+                </div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge bg-light text-dark p-2 text-start">
+                        <div>{{updateDate}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/article}}
+    <div class="card my-3">
+        {{#comment}}
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;" >
+                    {{comments}}
+                </div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge bg-light text-dark p-2 text-start">
+                        <div>{{createDate}}</div>
+                    </div>
+                </div>
+            </div>
+        {{/comment}}
+    </div>
+    {{>comment/comment_view}}
+    {{>comment/comment_create}}
 </div>
 {{>layouts/footer}}
 

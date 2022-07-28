@@ -1,15 +1,14 @@
-package com.team.chatproject.servise;
+package com.team.chatproject.service;
 
 import com.team.chatproject.domain.Article;
 import com.team.chatproject.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class ArticleServise {
+public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
 
@@ -33,4 +32,5 @@ public class ArticleServise {
     public Article getDetail(Long id) {
        return articleRepository.findById(id).orElse(null);
     }
+
 }

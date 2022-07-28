@@ -1,7 +1,7 @@
 package com.team.chatproject.controller;
 
 import com.team.chatproject.domain.Article;
-import com.team.chatproject.servise.ArticleServise;
+import com.team.chatproject.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import java.util.List;
 public class ArticleController {
 
     @Autowired
-    private ArticleServise articleServise;
+    private ArticleService articleServise;
 
     @RequestMapping("/create")
     @ResponseBody
