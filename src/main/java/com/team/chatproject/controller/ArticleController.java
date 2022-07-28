@@ -2,6 +2,8 @@ package com.team.chatproject.controller;
 
 import com.team.chatproject.domain.Article;
 
+import com.team.chatproject.form.ArticleForm;
+import com.team.chatproject.form.CommentForm;
 import com.team.chatproject.service.ArticleService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -9,9 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -47,12 +54,19 @@ public class ArticleController {
     }
 
     @PostMapping("/create")
-    public String createArticle(@RequestParam String title,@RequestParam String body) {
-        this.articleServise.create(title, body);
+    public String createArticle(Model model, @Validated ArticleForm articleForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> validationErrors = bindingResult.getFieldErrors()
+                    .stream().collect(Collectors.toMap(
+                            FieldError::getField,
+                            FieldError::getDefaultMessage
+                    ));
+            if (!validationErrors.isEmpty()) {
+                model.addAttribute("validationErrors", validationErrors);
+            }
+            return "/article/article_new";
+        }
+        this.articleServise.create(articleForm.getTitle(), articleForm.getBody());
         return "redirect:/article/list";
     }
-
-
-
-
 }

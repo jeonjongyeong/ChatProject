@@ -1,5 +1,23 @@
 {{>layouts/header}}
 <div class="container">
+    <table>
+        <tr>
+            <td name="title" value="{{#ArticleForm}}{{title}}{{/ArticleForm}}"></td>
+            {{#validationErrors}}
+                {{#title}}
+                    <td>title error: {{title}}</td>
+                {{/title}}
+            {{/validationErrors}}
+        </tr>
+        <tr>
+            <td name="body" value="{{#ArticleForm}}{{body}}{{/ArticleForm}}"></td>
+            {{#validationErrors}}
+                {{#body}}
+                    <td>body error: {{body}}</td>
+                {{/body}}
+            {{/validationErrors}}
+        </tr>
+    </table>
 <form action="/article/create" method="post">
     <div class="mb-3 mt-3">
         <label for="title" class="form-label"><h5>제목</h5></label>

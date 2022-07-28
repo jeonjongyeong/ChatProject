@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,10 +28,9 @@ public class CommentController {
 
     @PostMapping("/create/{id}")
     public String createComment(Model model, @PathVariable("id") Long id,
-                                @Valid CommentForm commentForm, BindingResult bindingResult) {
+                                @Validated CommentForm commentForm, BindingResult bindingResult) {
         Article article = this.articleService.getDetail(id);
         if (bindingResult.hasErrors()) {
-
             Map<String, String> validationErrors = bindingResult.getFieldErrors()
                     .stream().collect(Collectors.toMap(
                             FieldError::getField,
@@ -39,7 +39,8 @@ public class CommentController {
             if (!validationErrors.isEmpty()) {
                 model.addAttribute("validationErrors", validationErrors);
             }
-            return String.format("redirect:/article/detail/%s", id);
+            model.addAttribute("article", article);
+            return "/article/article_detail";
         }
         // 질문만들기
         this.commentService.create(article, commentForm.getComments());
