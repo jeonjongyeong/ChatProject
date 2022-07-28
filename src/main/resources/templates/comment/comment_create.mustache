@@ -3,12 +3,14 @@
         <td name="comments" value="{{#CommentForm}}{{comments}}{{/CommentForm}}"></td>
         {{#validationErrors}}
             {{#comments}}
-                <td>comments error: {{comments}}</td>
+                <div class="alert alert-primary alert-dismissible">
+                    {{comments}}
+                </div>
             {{/comments}}
         {{/validationErrors}}
     </tr>
 </table>
-<form action="/comment/create/{{id}}" method="post" class="my-3" >
+<form action="/comment/create/{{id}}" method="post" class="my-3">
     <div class="form-control">
         <label class="label">
             <span class="label-text">댓글 쓰기</span>
