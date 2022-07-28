@@ -4,13 +4,13 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Article {
 
     @Id
@@ -24,11 +24,14 @@ public class Article {
     private String body ;
 
 
-    //private long memberId;
+    private long memberId;
 
     private  int viewCount;
 
     private LocalDateTime regDate;
     private LocalDateTime updateDate;
+
+    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
+    private List<Comment> commentList;
 
 }

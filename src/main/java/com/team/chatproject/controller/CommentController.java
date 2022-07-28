@@ -22,7 +22,6 @@ public class CommentController {
         Article article = this.articleService.getDetail(id);
         // 질문만들기
         this.commentService.create(article, comments);
-        return String.format("/article/detail/%s", id);
+        return String.format("redirect:/article/detail/%s",id);
     }
-
 }

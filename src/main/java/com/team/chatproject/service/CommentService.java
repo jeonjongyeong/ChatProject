@@ -19,10 +19,10 @@ public class CommentService {
         return comment;
     }
 
-    public void create(Article articleId, String comments) {
+    public void create(Article article, String comments) {
         Comment newComment = new Comment();
         newComment.setComments(comments);
-        newComment.setArticleId(articleId.getId());
+        newComment.setArticle(article);
         newComment.setRegDate(LocalDateTime.now());
         newComment.setUpdateDate(LocalDateTime.now());
 

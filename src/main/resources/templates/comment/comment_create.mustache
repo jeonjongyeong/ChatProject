@@ -1,26 +1,10 @@
-<div class="card my-3">
-    {{#comment}}
-        <div class="card-body">
-            <div class="card-text" style="white-space: pre-line;" >
-                {{comments}}
-            </div>
-            <div class="d-flex justify-content-end">
-                <div class="badge bg-light text-dark p-2 text-start">
-                    <div>{{createDate}}</div>
-                </div>
-            </div>
-        </div>
-    {{/comment}}
-</div>
 <form action="/comment/create/{{id}}" method="post" class="my-3">
     <div class="form-control">
         <label class="label">
-            <span class="label-text">댓글</span>
+            <span class="label-text">댓글 쓰기</span>
         </label>
         <textarea class="textarea textarea-bordered h-24" placeholder="댓글을 입력해 주세요" name="comments"
                   id="comments"></textarea>
     </div>
-
     <input type="submit" value="댓글등록" class="btn btn-outline"/>
-
 </form>

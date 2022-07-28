@@ -1,12 +1,11 @@
 package com.team.chatproject.controller;
 
 import com.team.chatproject.domain.Article;
-<<<<<<< HEAD
+
 import com.team.chatproject.service.ArticleService;
-=======
-import com.team.chatproject.servise.ArticleServise;
+
 import lombok.extern.slf4j.Slf4j;
->>>>>>> 20a0fa274bf4ed6f778555014be5920e62a48aa6
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

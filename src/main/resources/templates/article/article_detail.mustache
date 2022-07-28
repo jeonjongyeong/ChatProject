@@ -15,22 +15,11 @@
                 </div>
             </div>
         </div>
+        {{>comment/comment_view}}
+
     {{/article}}
     <div class="card my-3">
-        {{#comment}}
-            <div class="card-body">
-                <div class="card-text" style="white-space: pre-line;" >
-                    {{comments}}
-                </div>
-                <div class="d-flex justify-content-end">
-                    <div class="badge bg-light text-dark p-2 text-start">
-                        <div>{{createDate}}</div>
-                    </div>
-                </div>
-            </div>
-        {{/comment}}
     </div>
-    {{>comment/comment_view}}
     {{>comment/comment_create}}
 
     <a href="/article/list" class="btn btn-primary">뒤로가기</a>

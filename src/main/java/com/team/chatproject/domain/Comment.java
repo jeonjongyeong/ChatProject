@@ -19,8 +19,8 @@ public class Comment {
     @Column
     private String comments;
 
-    @Column
-    private long articleId;
+    @ManyToOne
+    private Article article;
 
     private LocalDateTime regDate;
     private LocalDateTime updateDate;
