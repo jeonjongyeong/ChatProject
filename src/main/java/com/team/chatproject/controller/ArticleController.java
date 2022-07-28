@@ -47,7 +47,7 @@ public class ArticleController {
     }
 
     @PostMapping("/create")
-    public String createArticle(@RequestBody String title,@RequestBody String body) {
+    public String createArticle(@RequestParam String title,@RequestParam String body) {
         this.articleServise.create(title, body);
         return "redirect:/article/list";
     }

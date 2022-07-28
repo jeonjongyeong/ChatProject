@@ -1,4 +1,14 @@
-<form action="/comment/create/{{id}}" method="post" class="my-3">
+<table>
+    <tr>
+        <td><div type="text" name="comments" value="{{#commentForm}}{{comments}}{{/commentForm}}" /></td>
+        {{#validationErrors}}
+            {{#comments}}
+                <td>comments error: {{comments}}</td>
+            {{/comments}}
+        {{/validationErrors}}
+    </tr>
+</table>
+<form action="/comment/create/{{id}}" method="post" class="my-3" >
     <div class="form-control">
         <label class="label">
             <span class="label-text">댓글 쓰기</span>

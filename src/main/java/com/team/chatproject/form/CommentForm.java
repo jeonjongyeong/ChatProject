@@ -1,4 +1,4 @@
-package com.team.chatproject.domain;
+package com.team.chatproject.form;
 
 import lombok.Getter;
 import lombok.Setter;
