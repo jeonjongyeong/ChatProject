@@ -15,13 +15,10 @@ public class MemberService {
 
     public void create(SignupForm signupForm) {
         Member newMember = new Member();
-
         newMember.setLoginId(signupForm.getLoginId());
         newMember.setLoginPw(signupForm.getLoginPw());
-
         newMember.setName(signupForm.getName());
         newMember.setNickName(signupForm.getNickName());
-
         newMember.setRegDate(LocalDateTime.now());
         newMember.setUpdateDate(LocalDateTime.now());
 

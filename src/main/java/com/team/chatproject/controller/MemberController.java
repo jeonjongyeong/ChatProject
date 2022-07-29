@@ -45,7 +45,7 @@ public class MemberController {
         }
         // 회원가입
         this.memberService.create(signupForm);
-        return String.format("redirect:/article/list");
+        return "redirect:/article/list";
     }
 
     @GetMapping("/login")
