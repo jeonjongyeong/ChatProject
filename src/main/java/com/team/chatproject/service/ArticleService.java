@@ -29,7 +29,7 @@ public class ArticleService {
             this.articleRepository.save(article);
             return article;
         }else{
-            throw new DataNotFoundException("question not found");
+            throw new DataNotFoundException("article not found");
         }
     }
 
