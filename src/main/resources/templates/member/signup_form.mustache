@@ -1,3 +1,72 @@
 {{>layouts/header}}
-<h1>회원가입 페이지</h1>
+<div class="container my-3">
+    <div class="my-3 border-bottom">
+        <div>
+            <h4>회원가입</h4>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <td name="loginId" value="{{#SignupForm}}{{loginId}}{{/SignupForm}}"></td>
+            {{#validationErrors}}
+                {{#loginId}}
+                    <div class="alert alert-primary alert-dismissible">
+                        {{loginId}}
+                    </div>
+                {{/loginId}}
+            {{/validationErrors}}
+        </tr>
+        <tr>
+            <td name="loginPw" value="{{#SignupForm}}{{loginPw}}{{/SignupForm}}"></td>
+            {{#validationErrors}}
+                {{#loginPw}}
+                    <div class="alert alert-primary alert-dismissible">
+                        {{loginPw}}
+                    </div>
+                {{/loginPw}}
+            {{/validationErrors}}
+        </tr>
+        <tr>
+            <td name="name" value="{{#SignupForm}}{{name}}{{/SignupForm}}"></td>
+            {{#validationErrors}}
+                {{#name}}
+                    <div class="alert alert-primary alert-dismissible">
+                        {{name}}
+                    </div>
+                {{/name}}
+            {{/validationErrors}}
+        </tr>
+        <tr>
+            <td name="nickName" value="{{#SignupForm}}{{nickName}}{{/SignupForm}}"></td>
+            {{#validationErrors}}
+                {{#nickName}}
+                    <div class="alert alert-primary alert-dismissible">
+                        {{nickName}}
+                    </div>
+                {{/nickName}}
+            {{/validationErrors}}
+        </tr>
+    </table>
+    <form action="/member/signup" method="post">
+
+        <div class="mb-3">
+            <label for="username" class="form-label">사용자ID</label>
+            <input type="text" class="form-control" name="loginId">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">비밀번호</label>
+            <input type="password" class="form-control" name="loginPw">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">이름</label>
+            <input type="email" class="form-control" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">닉네임</label>
+            <input type="email" class="form-control" name="nickName">
+        </div>
+        <button type="submit" class="btn btn-primary">회원가입</button>
+    </form>
+</div>
+</html>
 {{>layouts/footer}}
