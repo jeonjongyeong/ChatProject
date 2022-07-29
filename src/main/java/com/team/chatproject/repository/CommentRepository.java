@@ -1,6 +1,5 @@
 package com.team.chatproject.repository;
 
-import com.team.chatproject.domain.Article;
 import com.team.chatproject.domain.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 

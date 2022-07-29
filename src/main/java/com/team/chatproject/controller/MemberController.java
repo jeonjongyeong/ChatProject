@@ -1,10 +1,10 @@
 package com.team.chatproject.controller;
 
-import com.team.chatproject.domain.Article;
-import com.team.chatproject.form.CommentForm;
-import com.team.chatproject.service.ArticleService;
-import com.team.chatproject.service.CommentService;
+import com.team.chatproject.form.LoginForm;
+import com.team.chatproject.form.SignupForm;
+import com.team.chatproject.service.MemberService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,24 +13,25 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
+@Slf4j
 @Controller
-@RequestMapping("/comment")
+@RequestMapping("/member")
 @AllArgsConstructor
-public class CommentController {
+public class MemberController {
     @Autowired
-    CommentService commentService;
-    @Autowired
-    ArticleService articleService;
+    MemberService memberService;
 
-    @PostMapping("/create/{id}")
-    public String createComment(Model model, @PathVariable("id") Long id,
-                                @Validated CommentForm commentForm, BindingResult bindingResult) {
-        Article article = this.articleService.getDetail(id);
+
+    @GetMapping("/signup")
+    public String showSignup(SignupForm signupForm){
+        return "/member/signup_form";
+    }
+
+    @PostMapping("/signup")
+    public String signup(Model model, @Validated SignupForm signupForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, String> validationErrors = bindingResult.getFieldErrors()
                     .stream().collect(Collectors.toMap(
@@ -40,12 +41,18 @@ public class CommentController {
             if (!validationErrors.isEmpty()) {
                 model.addAttribute("validationErrors", validationErrors);
             }
-            model.addAttribute("article", article);
-            return "/article/article_detail";
+            return "/member/signup_form";
         }
-        // 질문만들기
-        this.commentService.create(article, commentForm.getComments());
-        return String.format("redirect:/article/detail/%s", id);
+        // 회원가입
+        this.memberService.create(signupForm);
+        return String.format("redirect:/article/list");
+    }
+
+    @GetMapping("/login")
+    public String showloginForm(LoginForm loginForm){
+        return "/member/login_form";
     }
 
 }
+
+
