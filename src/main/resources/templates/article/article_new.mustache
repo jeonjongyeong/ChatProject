@@ -5,7 +5,9 @@
             <td name="title" value="{{#ArticleForm}}{{title}}{{/ArticleForm}}"></td>
             {{#validationErrors}}
                 {{#title}}
-                    <td>title error: {{title}}</td>
+                    <div class="alert alert-primary alert-dismissible">
+                        {{title}}
+                    </div>
                 {{/title}}
             {{/validationErrors}}
         </tr>
@@ -13,23 +15,25 @@
             <td name="body" value="{{#ArticleForm}}{{body}}{{/ArticleForm}}"></td>
             {{#validationErrors}}
                 {{#body}}
-                    <td>body error: {{body}}</td>
+                    <div class="alert alert-primary alert-dismissible">
+                        {{body}}
+                    </div>
                 {{/body}}
             {{/validationErrors}}
         </tr>
     </table>
-<form action="/article/create" method="post">
-    <div class="mb-3 mt-3">
-        <label for="title" class="form-label"><h5>제목</h5></label>
-        <input type="text" class="form-control" name="title">
+    <form action="/article/create" method="post">
+        <div class="mb-3 mt-3">
+            <label for="title" class="form-label"><h5>제목</h5></label>
+            <input type="text" class="form-control" name="title">
 
-    </div>
-    <div class="mb-3">
-        <label for="body" class="form-label"><h5>내용</h5></label>
-        <textarea name="body" class="form-control" rows="10"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">생성하기</button>
-    <a href="/article/list" class="btn btn-primary">뒤로가기</a>
-</form>
+        </div>
+        <div class="mb-3">
+            <label for="body" class="form-label"><h5>내용</h5></label>
+            <textarea name="body" class="form-control" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">생성하기</button>
+        <a href="/article/list" class="btn btn-primary">뒤로가기</a>
+    </form>
 </div>
 {{>layouts/footer}}
