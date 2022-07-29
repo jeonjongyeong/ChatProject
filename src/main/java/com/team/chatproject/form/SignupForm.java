@@ -17,6 +17,6 @@ public class SignupForm {
     private String name;
 
     @NotEmpty(message = "닉네임 필수항목입니다.")
-    private String nikName;
+    private String nickName;
 
 }

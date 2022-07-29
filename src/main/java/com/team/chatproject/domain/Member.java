@@ -22,7 +22,7 @@ public class Member {
 
     private String loginPw ;
     private String name ;
-    private String nikName ;
+    private String nickName ;
 
     private LocalDateTime regDate ;
     private LocalDateTime updateDate ;

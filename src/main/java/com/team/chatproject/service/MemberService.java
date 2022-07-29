@@ -20,7 +20,7 @@ public class MemberService {
         newMember.setLoginPw(signupForm.getLoginPw());
 
         newMember.setName(signupForm.getName());
-        newMember.setNikName(signupForm.getNikName());
+        newMember.setNickName(signupForm.getNickName());
 
         newMember.setRegDate(LocalDateTime.now());
         newMember.setUpdateDate(LocalDateTime.now());
