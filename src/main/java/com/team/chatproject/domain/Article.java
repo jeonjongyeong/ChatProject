@@ -1,6 +1,7 @@
 package com.team.chatproject.domain;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class Article {
 
     private  int viewCount;
 
+    @DateTimeFormat(pattern = "yyyy/mm/dd")
     private LocalDateTime regDate;
     private LocalDateTime updateDate;
 
