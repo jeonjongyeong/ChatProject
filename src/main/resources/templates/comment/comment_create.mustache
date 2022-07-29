@@ -21,3 +21,10 @@
     <input type="submit" value="댓글등록" class="btn btn-outline"/>
     <a href="/article/list" class="btn btn-primary">뒤로가기</a>
 </form>
+
+<form action="/comment/delete/{{id}}" method="post" class="my-3">
+  <div class="col-md-12">
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-danger" id="btn-delete" onClick="location.href='/article/delete/{{article.id}}'">삭제</button>
+    </div>
+</form>

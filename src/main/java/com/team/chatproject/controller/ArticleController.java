@@ -69,4 +69,10 @@ public class ArticleController {
         this.articleServise.create(articleForm.getTitle(), articleForm.getBody());
         return "redirect:/article/list";
     }
+    @GetMapping("/delete/{id}")
+    public String articleDelete(@PathVariable Long id) {
+        Article article = this.articleServise.getDetail(id);
+        this.articleServise.delete(article);
+        return "redirect:/article/list";
+    }
 }

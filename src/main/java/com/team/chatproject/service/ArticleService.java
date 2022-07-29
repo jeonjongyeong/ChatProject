@@ -42,5 +42,13 @@ public class ArticleService {
         article.setUpdateDate(LocalDateTime.now());
         this.articleRepository.save(article);
     }
+    public void delete(Article article) {
+        this.articleRepository.delete(article);
+    }
+
+    public void test(Article article) {
+        this.articleRepository.delete(article);
+    }
+
 }
 
