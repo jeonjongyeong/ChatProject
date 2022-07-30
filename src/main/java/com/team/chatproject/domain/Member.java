@@ -21,13 +21,19 @@ public class Member {
 
 
     private String loginPw ;
-    private String name ;
-    private String nickName ;
 
-    private LocalDateTime regDate ;
-    private LocalDateTime updateDate ;
+    @Column(unique = true)
+    private String name;
 
+    @Column(unique = true)
+    private String nickName;
+
+    private LocalDateTime regDate;
+    private LocalDateTime updateDate;
+
+    @Column
     private int authority;
+
     private int delStatus;
     private LocalDateTime delDate;
 

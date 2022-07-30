@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 public class SignupForm {
-    @Size(min=3, max=25)
+    @Size(min=0, max=25)
     @NotEmpty(message = "아이디는필수항목입니다.")
     private String loginId;
 
@@ -21,5 +21,6 @@ public class SignupForm {
 
     @NotEmpty(message = "닉네임 필수항목입니다.")
     private String nickName;
+
 
 }

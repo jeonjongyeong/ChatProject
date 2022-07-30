@@ -6,6 +6,7 @@ import com.team.chatproject.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class MemberController {
     @Autowired
-    MemberService memberService;
+    private MemberService memberService;
 
 
     @GetMapping("/signup")
@@ -44,12 +45,12 @@ public class MemberController {
             return "/member/signup_form";
         }
         // 회원가입
-        this.memberService.create(signupForm);
+        this.memberService.create(signupForm.getLoginId(), signupForm.getLoginPw(), signupForm.getName(), signupForm.getNickName());
         return "redirect:/article/list";
     }
 
     @GetMapping("/login")
-    public String showloginForm(LoginForm loginForm){
+    public String showLoginForm(LoginForm loginForm){
         return "/member/login_form";
     }
 

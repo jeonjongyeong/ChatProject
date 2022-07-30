@@ -50,21 +50,23 @@
     <form action="/member/signup" method="post">
 
         <div class="mb-3">
-            <label for="username" class="form-label">사용자ID</label>
+            <label for="loginId" class="form-label">사용자ID</label>
             <input type="text" class="form-control" name="loginId">
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">비밀번호</label>
+            <label for="loginPw" class="form-label">비밀번호</label>
             <input type="password" class="form-control" name="loginPw">
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">이름</label>
-            <input type="email" class="form-control" name="name">
+            <label for="name" class="form-label">이름</label>
+            <input type="text" class="form-control" name="name">
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">닉네임</label>
-            <input type="email" class="form-control" name="nickName">
+            <label for="nickName" class="form-label">닉네임</label>
+            <input type="text" class="form-control" name="nickName">
         </div>
+        <!-- 일반 사용자 가입 구현 중-->
+<!--        <input type="hidden" id="authority" name="authority" value="5">-->
         <button type="submit" class="btn btn-primary">회원가입</button>
     </form>
 </div>
