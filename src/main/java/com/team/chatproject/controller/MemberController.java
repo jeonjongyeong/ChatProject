@@ -1,7 +1,9 @@
 package com.team.chatproject.controller;
 
+import com.team.chatproject.domain.Member;
 import com.team.chatproject.form.LoginForm;
 import com.team.chatproject.form.SignupForm;
+import com.team.chatproject.repository.MemberRepository;
 import com.team.chatproject.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +17,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -25,6 +29,9 @@ import java.util.stream.Collectors;
 public class MemberController {
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    MemberRepository memberRepository;
 
 
     @GetMapping("/signup")
@@ -49,8 +56,12 @@ public class MemberController {
         try {
             this.memberService.create(signupForm.getLoginId(), signupForm.getLoginPw(), signupForm.getName(), signupForm.getNickName());
         } catch (DataIntegrityViolationException e) {
-            if(signupForm.getLoginId().equals(signupForm.getLoginId())) {
-                model.addAttribute("error", signupForm.getLoginId());
+            if(memberRepository.findByloginId(signupForm.getLoginId()).stream().count() != 0) {
+                model.addAttribute("loginIdError", signupForm.getLoginId());
+            }
+
+            if(memberRepository.findByNickName(signupForm.getNickName()).stream().count() != 0) {
+                model.addAttribute("nickNameError", signupForm.getNickName());
             }
                 return "/member/signup_form";
             }
