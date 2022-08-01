@@ -6,9 +6,8 @@ spring:
     url: jdbc:mysql://localhost:3306/whatchat?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
     username: sbsst
     password: sbs123414
-      #jpa:
-      #hibernate:
-    #ddl-auto: create
+jpa:
+    ddl-auto: update
     properties:
       hibernate:
         show_sql: true
