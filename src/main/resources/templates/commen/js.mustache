@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<script>
+var historyBack = '${historyBack}' == 'true';
+  var msg = '${msg}'.trim();
+  if (msg) {
+    alert(msg);
+  }
+  if (historyBack) {
+    history.back();
+  }
+  var replaceUri = '${replaceUri}'.trim();
+  if (replaceUri) {
+    location.replace(replaceUri);
+  }
+</script>
+</html>
