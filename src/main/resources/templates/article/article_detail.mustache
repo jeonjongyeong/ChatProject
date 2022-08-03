@@ -14,12 +14,21 @@
                     </div>
                 </div>
             </div>
+
         </div>
+        <form action="/article/modify{{id}}" method="post" class="my-3">
+            <div class="mt-3">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger" id="btn-delete"
+                            onClick="location.href='/article/modify/{{article.id}}'">수정
+                    </button>
+                </div>
+        </form>
+        {{>article/article_delete}}
         {{>comment/comment_view}}
     {{/article}}
     {{>comment/comment_create}}
 </div>
-{{>article/article_delete}}
 
 {{>layouts/footer}}
 

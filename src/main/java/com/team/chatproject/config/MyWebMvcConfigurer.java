@@ -31,6 +31,8 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
                 .addPathPatterns("/article/new")
                 .addPathPatterns("/article/modify")
                 .addPathPatterns("/article/doModify")
-                .addPathPatterns("/article/doDelete");
+                .addPathPatterns("/article/doDelete")
+                .addPathPatterns("/comment/**");
+
     }
 }

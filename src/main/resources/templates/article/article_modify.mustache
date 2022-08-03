@@ -1,66 +1,40 @@
 {{>layouts/header}}
-<div var="pageTitle" value="게시물 수정" />
-<section class="mt-5">
-  <div class="container mx-auto px-3">
-    <form class="table-box-type-1" method="POST"
-      action="/article/doModify">
-      <input type="hidden" name="id" value="${article.id}" />
-        {{#article}}
-        <table>
+<div class="container">
+    <h1>게시물 수정 페이지</h1>
+    <table>
+        <tr>
+            <td name="title" value="{{#ArticleForm}}{{title}}{{/ArticleForm}}"></td>
+            {{#validationErrors}}
+                {{#title}}
+                    <div class="alert alert-primary alert-dismissible">
+                        {{title}}
+                    </div>
+                {{/title}}
+            {{/validationErrors}}
+        </tr>
+        <tr>
+            <td name="body" value="{{#ArticleForm}}{{body}}{{/ArticleForm}}"></td>
+            {{#validationErrors}}
+                {{#body}}
+                    <div class="alert alert-primary alert-dismissible">
+                        {{body}}
+                    </div>
+                {{/body}}
+            {{/validationErrors}}
+        </tr>
+    </table>
+    <form action="/article/modify/{{id}}" method="post">
+        <div class="mb-3 mt-3">
+            <label for="title" class="form-label"><h5>제목</h5></label>
+            <input type="text" class="form-control" name="title">
 
-        <tbody>
-          <tr>
-            <th>번호</th>
-            <td>
-              <div class="badge badge-outline">{{id}}</div>
-            </td>
-          </tr>
-          <tr>
-            <th>작성날짜</th>
-            <td>{{regDate}}</td>
-          </tr>
-          <tr>
-            <th>수정날짜</th>
-            <td>{{updateDate}}</td>
-          </tr>
-          <tr>
-            <th>작성자</th>
-            <td>{{nickName}}</td>
-          </tr>
-          <tr>
-            <th>제목</th>
-            <td>
-              <input class="input input-bordered w-full max-w-xs"
-                name="title" type="text" placeholder="제목"
-                value="{{title}}" />
-            </td>
-          </tr>
-          <tr>
-            <th>내용</th>
-            <td>
-              <textarea class="textarea textarea-bordered w-full"
-                placeholder="Bio" name="body" rows="10">{{body}}</textarea>
-            </td>
-          </tr>
-          <tr>
-            <th>수정</th>
-            <td>
-              <input class="btn btn-active" type="submit" value="수정" />
-              <button class="btn btn-outline" type="button"
-                onclick="history.back();">뒤로가기</button>
-            </td>
-          </tr>
-        </tbody>
-          <colgroup>
-          <col width="200" />
-      </colgroup>
-      </table>
-{{/article}}
+        </div>
+        <div class="mb-3">
+            <label for="body" class="form-label"><h5>내용</h5></label>
+            <textarea name="body" class="form-control" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">수정하기</button>
+        <a href="/article/list" class="btn btn-primary">뒤로가기</a>
     </form>
-
-    <div class="btns">
-      <button class="btn btn-link" type="button"
-        onclick="history.back();">뒤로가기</button>
-    </div>
-  </div>
-</section>
+</div>
+{{>layouts/footer}}

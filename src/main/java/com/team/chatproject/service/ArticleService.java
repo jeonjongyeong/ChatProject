@@ -50,5 +50,16 @@ public class ArticleService {
         this.articleRepository.delete(article);
     }
 
+    public void modify(Long id, String title, String body) {
+        Optional<Article> opArticle = articleRepository.findById(id);
+        Article article = opArticle.get();
+
+        article.setUpdateDate(LocalDateTime.now());
+        article.setTitle(title);
+        article.setBody(body);
+
+        this.articleRepository.save(article);
+
+    }
 }
 

@@ -2,7 +2,6 @@ package com.team.chatproject.controller;
 
 import com.team.chatproject.domain.Member;
 import com.team.chatproject.domain.Rq;
-import com.team.chatproject.form.LoginForm;
 import com.team.chatproject.form.SignupForm;
 import com.team.chatproject.repository.MemberRepository;
 import com.team.chatproject.service.MemberService;
@@ -16,10 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -32,6 +32,7 @@ public class MemberController {
     private MemberService memberService;
     @Autowired
     private MemberRepository memberRepository;
+
     @Autowired
     private Rq rq;
 

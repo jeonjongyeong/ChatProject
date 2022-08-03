@@ -6,6 +6,7 @@ import com.team.chatproject.form.ArticleForm;
 import com.team.chatproject.form.CommentForm;
 import com.team.chatproject.service.ArticleService;
 
+import com.team.chatproject.util.Ut;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,13 @@ import java.util.stream.Collectors;
 public class ArticleController {
 
     @Autowired
-    private ArticleService articleServise;
+    private ArticleService articleService;
 
 
     // 전체 조회
     @RequestMapping("/list")
     public String showList(Model model) {
-        List<Article> articles = articleServise.getList();
+        List<Article> articles = articleService.getList();
         model.addAttribute("articles", articles);
         log.info(articles.toString());
         return "/article/article_list";
@@ -42,7 +43,7 @@ public class ArticleController {
     // 상세 조회
     @RequestMapping("/detail/{id}")
     public String showDetail(Model model, @PathVariable Long id) {
-        Article article = articleServise.getDetail(id);
+        Article article = articleService.getDetail(id);
         model.addAttribute("article", article);
         return "/article/article_detail";
     }
@@ -66,13 +67,40 @@ public class ArticleController {
             }
             return "/article/article_new";
         }
-        this.articleServise.create(articleForm.getTitle(), articleForm.getBody());
+        this.articleService.create(articleForm.getTitle(), articleForm.getBody());
         return "redirect:/article/list";
     }
     @GetMapping("/delete/{id}")
     public String articleDelete(@PathVariable Long id) {
-        Article article = this.articleServise.getDetail(id);
-        this.articleServise.delete(article);
+        Article article = this.articleService.getDetail(id);
+        this.articleService.delete(article);
         return "redirect:/article/list";
+    }
+
+    @GetMapping("/modify/{id}")
+    public  String  showModifyArticle (@PathVariable Long id ){
+        return "/article/article_modify";
+    }
+
+    @PostMapping("/modify/{id}")
+    public String modifyArticle(Model model, @PathVariable Long id ,@Validated ArticleForm articleForm, BindingResult bindingResult) {
+        Article article = articleService.getDetail(id);
+        if(article==null){
+            return Ut.jsHistoryBack("게시물이 없습니다.");
+        }
+        if (bindingResult.hasErrors()) {
+            Map<String, String> validationErrors = bindingResult.getFieldErrors()
+                    .stream().collect(Collectors.toMap(
+                            FieldError::getField,
+                            FieldError::getDefaultMessage
+                    ));
+            if (!validationErrors.isEmpty()) {
+                model.addAttribute("validationErrors", validationErrors);
+            }
+            return "/article/article_modify/";
+        }
+        this.articleService.modify(id, articleForm.getTitle(), articleForm.getBody());
+        return "redirect:/article/list";
+
     }
 }

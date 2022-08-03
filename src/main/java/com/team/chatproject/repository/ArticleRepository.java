@@ -9,5 +9,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     ArrayList<Article> Articles =  new ArrayList<>();
     @Override
     ArrayList<Article> findAll();
+
+
 }
 
