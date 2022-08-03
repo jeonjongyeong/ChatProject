@@ -1,9 +1,12 @@
 package com.team.chatproject.controller;
 
 import com.team.chatproject.domain.Article;
+import com.team.chatproject.domain.Comment;
+import com.team.chatproject.domain.Rq;
 import com.team.chatproject.form.CommentForm;
 import com.team.chatproject.service.ArticleService;
 import com.team.chatproject.service.CommentService;
+import com.team.chatproject.util.Ut;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,8 @@ public class CommentController {
     CommentService commentService;
     @Autowired
     ArticleService articleService;
+    @Autowired
+    private Rq rq;
 
     @PostMapping("/create/{id}")
     public String createComment(Model model, @PathVariable("id") Long id,
@@ -48,4 +53,10 @@ public class CommentController {
         return String.format("redirect:/article/detail/%s", id);
     }
 
+    @GetMapping("/delete/{id}")
+    public String commentDelete(@PathVariable long id) {
+        Comment comment = this.commentService.getComment(id);
+        this.commentService.delete(comment);
+        return String.format("redirect:/article/detail/%s", comment.getArticle().getId());
+    }
 }

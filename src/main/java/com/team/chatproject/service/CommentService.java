@@ -7,15 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class CommentService {
     @Autowired
     CommentRepository commentRepository;
 
-    public Comment getComment(Article articleId) {
-        Long id = articleId.getId();
-        Comment comment = commentRepository.findByArticleId(id);
+    public Comment getComment(long commentId) {
+        Optional<Comment> OpComment = commentRepository.findById(commentId);
+        Comment comment = OpComment.get();
         return comment;
     }
 
@@ -29,4 +30,7 @@ public class CommentService {
         this.commentRepository.save(newComment);
     }
 
+    public void delete(Comment comment) {
+        this.commentRepository.delete(comment);
+    }
 }
