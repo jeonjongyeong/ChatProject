@@ -1,13 +1,16 @@
 package com.team.chatproject.controller;
 
+import com.team.chatproject.domain.Member;
+import com.team.chatproject.domain.Rq;
 import com.team.chatproject.form.LoginForm;
 import com.team.chatproject.form.SignupForm;
+import com.team.chatproject.repository.MemberRepository;
 import com.team.chatproject.service.MemberService;
+import com.team.chatproject.util.Ut;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +18,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -24,7 +29,11 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class MemberController {
     @Autowired
-    MemberService memberService;
+    private MemberService memberService;
+    @Autowired
+    private MemberRepository memberRepository;
+    @Autowired
+    private Rq rq;
 
 
     @GetMapping("/signup")
@@ -49,17 +58,61 @@ public class MemberController {
         try {
             this.memberService.create(signupForm.getLoginId(), signupForm.getLoginPw(), signupForm.getName(), signupForm.getNickName());
         } catch (DataIntegrityViolationException e) {
-            if(signupForm.getLoginId().equals(signupForm.getLoginId())) {
-                model.addAttribute("error", signupForm.getLoginId());
+            if (memberRepository.findByLoginId(signupForm.getLoginId()).stream().count() != 0) {
+                model.addAttribute("loginIdError", signupForm.getLoginId());
             }
-                return "/member/signup_form";
+            if (memberRepository.findByNickName(signupForm.getNickName()).stream().count() != 0) {
+                model.addAttribute("nickNameError", signupForm.getNickName());
             }
+            return "/member/signup_form";
+        }
         return "redirect:/article/list";
     }
 
-    @GetMapping("/login")
-    public String showLoginForm() {
-        return "/member/login_form";
+    @RequestMapping("/login")
+    public String showLogin() {
+        return "member/login_form";
+    }
+
+    @RequestMapping("/doLogin")
+    @ResponseBody
+    public String doLogin(String loginId, String loginPw) {
+        if (rq.isLogin()) {
+            return Ut.jsHistoryBack("이미 로그인되었습니다.");		}
+
+        if (Ut.empty(loginId)) {
+            return Ut.jsHistoryBack("loginId(을)를 입력해주세요.");
+        }
+
+        if (Ut.empty(loginPw)) {
+            return Ut.jsHistoryBack("loginPw(을)를 입력해주세요.");
+        }
+
+        Member member = memberService.getMemberByLoginId(loginId);
+
+        if (member == null) {
+            return Ut.jsHistoryBack("존재하지 않은 로그인아이디 입니다.");
+        }
+
+        if (member.getLoginPw().equals(loginPw) == false) {
+            return Ut.jsHistoryBack("비밀번호가 일치하지 않습니다.");
+        }
+
+        rq.login(member);
+
+        return Ut.jsReplace(Ut.f("%s님 환영합니다.", member.getNickName()), "/");
+    }
+
+    @RequestMapping("/doLogout")
+    @ResponseBody
+    public String doLogout() {
+        if (!rq.isLogin()) {
+            return Ut.jsHistoryBack("이미 로그아웃 상태입니다.");
+        }
+
+        rq.logout();
+
+        return Ut.jsReplace("로그아웃 되었습니다.","/");
     }
 
 }
