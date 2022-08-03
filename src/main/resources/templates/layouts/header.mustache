@@ -43,10 +43,11 @@
       }
     }
 
+
+
+
     </style>
 
-    <!-- Custom styles for this template -->
-    <link href="headers.css" rel="stylesheet">
 
     <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -100,8 +101,15 @@
                         <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                     </ul>
                     <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2"onClick="location.href='/member/login'">Login</button>
-                        <button type="button" class="btn btn-warning" onClick="location.href='/member/signup'">Sign-up</button>
+                        <button type="button" class="btn btn-outline-light me-2" authorize="isAnonymous()"
+                                onClick="location.href='/member/login'">Login
+                        </button>
+                        <button type="button" class="btn btn-warning" onClick="location.href='/member/signup'">
+                            Sign-up
+                        </button>
+                        <button type="button" class="btn btn-outline-light me-2" authorize="isAuthenticated()"
+                                onClick="location.href='/member/doLogout'">Logout
+                        </button>
                     </div>
                 </div>
             </div>
