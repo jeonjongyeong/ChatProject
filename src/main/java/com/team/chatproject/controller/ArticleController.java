@@ -2,6 +2,8 @@ package com.team.chatproject.controller;
 
 import com.team.chatproject.domain.Article;
 
+import com.team.chatproject.domain.ResultData;
+import com.team.chatproject.domain.Rq;
 import com.team.chatproject.form.ArticleForm;
 import com.team.chatproject.form.CommentForm;
 import com.team.chatproject.service.ArticleService;
@@ -29,6 +31,8 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private Rq rq;
 
 
     // 전체 조회
@@ -78,16 +82,18 @@ public class ArticleController {
     }
 
     @GetMapping("/modify/{id}")
-    public  String  showModifyArticle (@PathVariable Long id ){
-        return "/article/article_modify";
-    }
-
-    @PostMapping("/modify/{id}")
-    public String modifyArticle(Model model, @PathVariable Long id ,@Validated ArticleForm articleForm, BindingResult bindingResult) {
+    public  String  showModifyArticle (Model model,@PathVariable Long id ){
         Article article = articleService.getDetail(id);
         if(article==null){
             return Ut.jsHistoryBack("게시물이 없습니다.");
         }
+        model.addAttribute("article", article);
+        return "/article/article_modify";
+    }
+
+    @PostMapping("/modify/{id}")
+    public String doModifyArticle(Model model, @PathVariable Long id ,@Validated ArticleForm articleForm, BindingResult bindingResult) {
+        Article article = articleService.getDetail(id);
         if (bindingResult.hasErrors()) {
             Map<String, String> validationErrors = bindingResult.getFieldErrors()
                     .stream().collect(Collectors.toMap(
@@ -97,7 +103,7 @@ public class ArticleController {
             if (!validationErrors.isEmpty()) {
                 model.addAttribute("validationErrors", validationErrors);
             }
-            return "/article/article_modify/";
+            return "/article/article_modify";
         }
         this.articleService.modify(id, articleForm.getTitle(), articleForm.getBody());
         return "redirect:/article/list";

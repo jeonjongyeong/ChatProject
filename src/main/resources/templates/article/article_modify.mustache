@@ -26,12 +26,11 @@
     <form action="/article/modify/{{id}}" method="post">
         <div class="mb-3 mt-3">
             <label for="title" class="form-label"><h5>제목</h5></label>
-            <input type="text" class="form-control" name="title">
-
+            <input type="text" class="form-control" name="title" value="{{article.title}}"/>
         </div>
         <div class="mb-3">
             <label for="body" class="form-label"><h5>내용</h5></label>
-            <textarea name="body" class="form-control" rows="10"></textarea>
+            <textarea name="body" class="form-control" rows="10">{{article.body}}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">수정하기</button>
         <a href="/article/list" class="btn btn-primary">뒤로가기</a>
