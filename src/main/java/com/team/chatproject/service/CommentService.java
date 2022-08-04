@@ -5,6 +5,7 @@ import com.team.chatproject.domain.Comment;
 import com.team.chatproject.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -29,7 +30,18 @@ public class CommentService {
 
         this.commentRepository.save(newComment);
     }
+    @Transactional
 
+    // 수정
+    public void update(Long id, String comments) {
+        Optional<Comment> opComment = commentRepository.findById(id);
+        Comment comment = opComment.get();
+        comment.setUpdateDate(LocalDateTime.now());
+        comment.setComments(comments);
+
+        this.commentRepository.save(comment);
+    }
+    @Transactional
     public void delete(Comment comment) {
         this.commentRepository.delete(comment);
     }

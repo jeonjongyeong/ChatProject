@@ -53,6 +53,39 @@ public class CommentController {
         return String.format("redirect:/article/detail/%s", id);
     }
 
+    // 수정
+    @GetMapping("/modify/{id}")
+    public String getComment(@PathVariable Long id, Model model) {
+        Comment comment = commentService.getComment(id);
+        model.addAttribute("comments", comment);
+        return "/comment/comment_modify";
+    }
+
+    @PostMapping("/modify/{id}")
+    public String modifyComment(@PathVariable Long id,
+                                Model model,
+                                @Validated CommentForm commentForm,
+                                BindingResult bindingResult) {
+        Comment comment = commentService.getComment(id);
+        if (bindingResult.hasErrors()) {
+            Map<String, String> validationErrors = bindingResult.getFieldErrors()
+                    .stream().collect(Collectors.toMap(
+                            FieldError::getField,
+                            FieldError::getDefaultMessage
+                    ));
+            if (!validationErrors.isEmpty()) {
+                model.addAttribute("validationErrors", validationErrors);
+            }
+            return "/comment/comment_modify";
+        }
+        this.commentService.update(id, commentForm.getComments());
+        return "redirect:/article/detail/" + comment.getArticle().getId();
+    }
+
+
+
+
+    // 삭제
     @GetMapping("/delete/{id}")
     public String commentDelete(@PathVariable long id) {
         Comment comment = this.commentService.getComment(id);
