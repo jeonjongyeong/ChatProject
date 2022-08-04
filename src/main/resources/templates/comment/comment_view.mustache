@@ -1,7 +1,10 @@
 <div>
     <label class="label">
-        <span class="label-text">댓글</span>
+        <div class = "fs-4">댓글
+
+        </div>
     </label>
+    <hr>
     <table>
         <tr>
             <td name="comments" value="{{#CommentForm}}{{comments}}{{/CommentForm}}"></td>
@@ -14,44 +17,36 @@
             {{/validationErrors}}
         </tr>
     </table>
-    {{#commentList}}
+{{#commentList}}
         <div class="card my-3">
             <div class="card-body">
-                <div class="card-text" style="white-space: pre-line;">
-                    {{comments}}
-                </div>
+                <!--  수정  버튼 -->
                 <div class="d-flex justify-content-end">
-                    <div class="badge bg-light text-dark p-2 text-start">
-                        <div>{{updateDate}}
-                        </div>
-                    </div>
-
-
-                    <!--  수정  버튼 -->
-                    <button type="button" class="btn btn-danger" id="btn-modify"
-                            onClick="location.href='/comment/modify/{{id}}'">수정
+                    <button class="btn btn-primary mr-2 btn-sm" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseExample{{id}}" aria-expanded="false"
+                            aria-controls="collapseExample"
+                            id="btn-modify">수정
                     </button>
-
-                    <button type="button" class="btn btn-danger" id="btn-delete"
+                    <button type="button" class="btn btn-warning btn-sm" id="btn-delete"
                             onClick="location.href='/comment/delete/{{id}}'">삭제
                     </button>
                 </div>
+                <div class="card-text" style="white-space: pre-line;">
+                    {{comments}}
+                </div>
+
+
+                <div class="d-flex justify-content-end">
+                    <div class="text-start">
+                        <div>{{updateDate}}
+                        </div>
+                    </div>
+                </div>
+                {{>comment/comment_modify}}
             </div>
+
         </div>
-    {{/commentList}}
+    </div>
+{{/commentList}}
 </div>
 
-
-
-<script>
-{
-var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
-var collapseList = collapseElementList.map(function (collapseEl) {
-  return new bootstrap.Collapse(collapseEl)
-})
-
-}
-
-
-
-</script>
