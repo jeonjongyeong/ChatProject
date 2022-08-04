@@ -1,0 +1,28 @@
+{{>layouts/header}}
+<table>
+    <tr>
+        <td name="comments" value="{{#CommentForm}}{{comments}}{{/CommentForm}}"></td>
+        {{#validationErrors}}
+            {{#comments}}
+                <div class="alert alert-primary alert-dismissible">
+                    {{comments}}
+                </div>
+            {{/comments}}
+        {{/validationErrors}}
+    </tr>
+</table>
+{{#comments}}
+    <form action="/comment/modify/{{id}}" method="post">
+        <div>
+            <textarea class="form-control" name ="comments" id="comments" rows="3">
+                {{comments}}
+            </textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">수정
+        </button>
+    </form>
+{{/comments}}
+
+
+
+{{>layouts/footer}}
