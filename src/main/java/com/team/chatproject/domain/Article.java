@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,9 +30,9 @@ public class Article {
 
     private  int viewCount;
 
-    @DateTimeFormat(pattern = "yyyy/mm/dd")
-    private LocalDateTime regDate;
-    private LocalDateTime updateDate;
+
+    private LocalDate regDate;
+    private LocalDate updateDate;
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
     private List<Comment> commentList;

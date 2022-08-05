@@ -9,6 +9,7 @@ import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -45,8 +46,8 @@ public class ArticleService {
         //article.setMemberId(memberId);
         article.setTitle(title);
         article.setBody(body);
-        article.setRegDate(LocalDateTime.now());
-        article.setUpdateDate(LocalDateTime.now());
+        article.setRegDate(LocalDate.now());
+        article.setUpdateDate(LocalDate.now());
         this.articleRepository.save(article);
     }
     public void delete(Article article) {
@@ -61,7 +62,7 @@ public class ArticleService {
         Optional<Article> opArticle = articleRepository.findById(id);
         Article article = opArticle.get();
 
-        article.setUpdateDate(LocalDateTime.now());
+        article.setUpdateDate(LocalDate.now());
         article.setTitle(title);
         article.setBody(body);
 

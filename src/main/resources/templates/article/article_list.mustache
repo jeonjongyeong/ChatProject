@@ -17,11 +17,11 @@
         </thead>
         <tbody>
         {{#articles}}
-            <tr>
+            <tr class="text-center">
                 <th>{{id}}</th>
-                <td width="40%" class="overflow-hidden"><a href="/article/detail/{{id}}">{{title}}</a></td>
-                <td width="40%" class="overflow-hidden"> {{body}}</td>
-                <td width="10%" class="overflow-hidden">{{regDate}}</td>
+                <td width="40%" class="overflow-hidden text-center"><a href="/article/detail/{{id}}">{{title}}</a></td>
+                <td width="40%" class="overflow-hidden text-center"> {{body}}</td>
+                <td width="10%" class="overflow-hidden text-center">{{regDate}}</td>
             </tr>
         {{/articles}}
         </tbody>
