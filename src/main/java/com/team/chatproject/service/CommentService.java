@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -25,8 +26,8 @@ public class CommentService {
         Comment newComment = new Comment();
         newComment.setComments(comments);
         newComment.setArticle(article);
-        newComment.setRegDate(LocalDateTime.now());
-        newComment.setUpdateDate(LocalDateTime.now());
+        newComment.setRegDate(LocalDate.now());
+        newComment.setUpdateDate(LocalDate.now());
 
         this.commentRepository.save(newComment);
     }
@@ -36,7 +37,7 @@ public class CommentService {
     public void update(Long id, String comments) {
         Optional<Comment> opComment = commentRepository.findById(id);
         Comment comment = opComment.get();
-        comment.setUpdateDate(LocalDateTime.now());
+        comment.setUpdateDate(LocalDate.now());
         comment.setComments(comments);
 
         this.commentRepository.save(comment);

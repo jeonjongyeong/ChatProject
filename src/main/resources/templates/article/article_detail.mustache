@@ -17,11 +17,15 @@
 
         </div>
         {{>article/article_delete}}
+        <button class="btn btn-primary mr-2" type="button" data-bs-toggle="collapse"
+                data-bs-target="#comment_view" aria-expanded="false"
+                aria-controls="collapseExample"
+                id="btn-view">댓글 보기
+        </button>
         {{>comment/comment_view}}
     {{/article}}
-    {{>comment/comment_create}}
-</div>
 
+</div>
 {{>layouts/footer}}
 
 
