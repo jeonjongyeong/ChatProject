@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Getter
@@ -36,6 +37,5 @@ public class Member {
 
     private int delStatus;
     private LocalDateTime delDate;
-
 
 }

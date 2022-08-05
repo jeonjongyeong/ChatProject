@@ -25,8 +25,12 @@ public class Comment {
     @ManyToOne
     private Article article;
 
+    @Column
+    private String nickname;
+
     @CreatedDate
     private LocalDate regDate;
     @LastModifiedDate
     private LocalDate updateDate;
+
 }
