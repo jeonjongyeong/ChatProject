@@ -1,28 +1,11 @@
-{{>layouts/header}}
-<table>
-    <tr>
-        <td name="comments" value="{{#CommentForm}}{{comments}}{{/CommentForm}}"></td>
-        {{#validationErrors}}
-            {{#comments}}
-                <div class="alert alert-primary alert-dismissible">
-                    {{comments}}
-                </div>
-            {{/comments}}
-        {{/validationErrors}}
-    </tr>
-</table>
+<div class="collapse" id="collapseExample{{id}}">
 {{#comments}}
-    <form action="/comment/modify/{{id}}" method="post">
-        <div>
-            <textarea class="form-control" name ="comments" id="comments" rows="3">
-                {{comments}}
-            </textarea>
-        </div>
-        <button type="submit" class="btn btn-outline-primary">수정
-        </button>
-    </form>
+        <form action="/comment/modify/{{id}}" method="post">
+            <div>
+                <textarea class="form-control" name="comments" id="comments" rows="3">{{comments}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-primary mt-3">수정
+            </button>
+        </form>
 {{/comments}}
-
-
-
-{{>layouts/footer}}
+</div>

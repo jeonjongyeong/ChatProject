@@ -3,8 +3,11 @@ package com.team.chatproject.domain;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -22,6 +25,8 @@ public class Comment {
     @ManyToOne
     private Article article;
 
-    private LocalDateTime regDate;
-    private LocalDateTime updateDate;
+    @CreatedDate
+    private LocalDate regDate;
+    @LastModifiedDate
+    private LocalDate updateDate;
 }
