@@ -1,15 +1,3 @@
-<table>
-    <tr>
-        <td name="comments" value="{{#CommentForm}}{{comments}}{{/CommentForm}}"></td>
-        {{#validationErrors}}
-            {{#comments}}
-                <div class="alert alert-primary alert-dismissible">
-                    {{comments}}
-                </div>
-            {{/comments}}
-        {{/validationErrors}}
-    </tr>
-</table>
 <form action="/comment/create/{{id}}" method="post" class="my-3">
     <div class="form-control">
         <label class="label">

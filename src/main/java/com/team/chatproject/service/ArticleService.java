@@ -3,13 +3,13 @@ package com.team.chatproject.service;
 import com.team.chatproject.domain.*;
 import com.team.chatproject.repository.ArticleRepository;
 import com.team.chatproject.util.DataNotFoundException;
-import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +32,7 @@ public class ArticleService {
         List<Article> articles = articleRepository.findAll();
         return articles;
     }
+
 
     public Article getDetail(Long id) {
         Optional<Article> opArticle = this.articleRepository.findById(id);
@@ -63,9 +64,6 @@ public class ArticleService {
         this.articleRepository.delete(article);
     }
 
-    public void test(Article article) {
-        this.articleRepository.delete(article);
-    }
 
     public void modify(Long id, String title, String body) {
         Optional<Article> opArticle = articleRepository.findById(id);
