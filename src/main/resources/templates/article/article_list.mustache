@@ -16,14 +16,14 @@
         </tr>
         </thead>
         <tbody>
-        {{#articles}}
+        {{#articlePageList}}
             <tr class="text-center">
                 <th>{{id}}</th>
                 <td width="40%" class="overflow-hidden text-center"><a href="/article/detail/{{id}}">{{title}}</a></td>
                 <td width="40%" class="overflow-hidden text-center"> {{body}}</td>
                 <td width="10%" class="overflow-hidden text-center">{{regDate}}</td>
             </tr>
-        {{/articles}}
+        {{/articlePageList}}
         </tbody>
     </table>
     <a href="/article/new" class="btn btn-primary me-10">생성하기</a>

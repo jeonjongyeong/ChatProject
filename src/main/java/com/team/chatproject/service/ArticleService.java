@@ -4,6 +4,8 @@ import com.team.chatproject.domain.*;
 import com.team.chatproject.repository.ArticleRepository;
 import com.team.chatproject.util.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,7 +19,6 @@ public class ArticleService {
     private ArticleRepository articleRepository;
 
 
-
     @Autowired
     private Rq rq;
 
@@ -25,10 +26,14 @@ public class ArticleService {
     private MemberService memberService;
 
 
-    public List<Article> getList() {
-        List<Article> articles = articleRepository.findAll();
-        return articles;
+    public Page<Article> getPageList(Pageable pageable) {
+        return articleRepository.findAll(pageable);
     }
+
+//    public List<Article> getList() {
+//        List<Article> articles = articleRepository.findAll();
+//        return articles;
+//    }
 
 
     public Article getDetail(Long id) {
@@ -41,7 +46,7 @@ public class ArticleService {
             article.setViewCount(article.getViewCount() + 1);
             this.articleRepository.save(article);
             return article;
-        }else{
+        } else {
             throw new DataNotFoundException("article not found");
         }
     }
@@ -57,6 +62,7 @@ public class ArticleService {
         article.setUpdateDate(LocalDate.now());
         this.articleRepository.save(article);
     }
+
     public void delete(Article article) {
         this.articleRepository.delete(article);
     }
@@ -73,12 +79,13 @@ public class ArticleService {
         this.articleRepository.save(article);
 
     }
+
     public ResultData actorCanModify(int actorId, Article article) {
-        if ( article == null ) {
+        if (article == null) {
             return ResultData.from("F-1", "게시물이 존재하지 않습니다.");
         }
 
-        if ( article.getMemberId() != actorId ) {
+        if (article.getMemberId() != actorId) {
             return ResultData.from("F-2", "권한이 없습니다.");
         }
 
