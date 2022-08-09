@@ -32,6 +32,7 @@ public class CommentController {
     @Autowired
     private Rq rq;
 
+
     @PostMapping("/create/{id}")
     public String createComment(Model model, @PathVariable("id") Long id,
                                 @Validated CommentForm commentForm, BindingResult bindingResult) {
