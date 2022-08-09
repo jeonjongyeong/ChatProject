@@ -40,9 +40,10 @@ public class ArticleController {
 
     // 전체 조회
     @RequestMapping("/list")
-    public String showList(Model model, @PageableDefault(size = 10, sort="id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public String showList(Model model) {
         List<Article> articles = articleService.getList();
         log.info(articles.toString());
+        model.addAttribute("articles", articles);
         return "/article/article_list";
     }
 

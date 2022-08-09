@@ -4,10 +4,7 @@ import com.team.chatproject.domain.*;
 import com.team.chatproject.repository.ArticleRepository;
 import com.team.chatproject.util.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Collections;
