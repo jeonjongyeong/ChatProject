@@ -2,6 +2,8 @@ package com.team.chatproject.service;
 
 import com.team.chatproject.domain.Article;
 import com.team.chatproject.domain.Comment;
+import com.team.chatproject.domain.Member;
+import com.team.chatproject.domain.Rq;
 import com.team.chatproject.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,12 @@ public class CommentService {
     @Autowired
     CommentRepository commentRepository;
 
+    @Autowired
+    MemberService memberService;
+
+    @Autowired
+    Rq rq;
+
     public Comment getComment(long commentId) {
         Optional<Comment> OpComment = commentRepository.findById(commentId);
         Comment comment = OpComment.get();
@@ -26,6 +34,8 @@ public class CommentService {
         Comment newComment = new Comment();
         newComment.setComments(comments);
         newComment.setArticle(article);
+        Member member = memberService.getMemberById(rq.getLoginMemberId());
+        newComment.setNickname(member.getNickName());
         newComment.setRegDate(LocalDate.now());
         newComment.setUpdateDate(LocalDate.now());
 

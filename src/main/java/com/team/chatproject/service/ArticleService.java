@@ -1,14 +1,13 @@
 package com.team.chatproject.service;
 
-import com.team.chatproject.domain.Article;
-import com.team.chatproject.domain.Comment;
-import com.team.chatproject.domain.ResultData;
+import com.team.chatproject.domain.*;
 import com.team.chatproject.repository.ArticleRepository;
 import com.team.chatproject.util.DataNotFoundException;
 import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -19,6 +18,14 @@ import java.util.Optional;
 public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
+
+
+
+    @Autowired
+    private Rq rq;
+
+    @Autowired
+    private MemberService memberService;
 
 
     public List<Article> getList() {
@@ -46,6 +53,8 @@ public class ArticleService {
         //article.setMemberId(memberId);
         article.setTitle(title);
         article.setBody(body);
+        Member member = memberService.getMemberById(rq.getLoginMemberId());
+        article.setNickname(member.getNickName());
         article.setRegDate(LocalDate.now());
         article.setUpdateDate(LocalDate.now());
         this.articleRepository.save(article);
@@ -61,10 +70,10 @@ public class ArticleService {
     public void modify(Long id, String title, String body) {
         Optional<Article> opArticle = articleRepository.findById(id);
         Article article = opArticle.get();
-
         article.setUpdateDate(LocalDate.now());
         article.setTitle(title);
         article.setBody(body);
+
 
         this.articleRepository.save(article);
 

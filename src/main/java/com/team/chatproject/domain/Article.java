@@ -25,10 +25,13 @@ public class Article {
     @Column
     private String body ;
 
+    @Column
+    private String nickname;
 
     private long memberId;
 
     private  int viewCount;
+
 
 
     private LocalDate regDate;
