@@ -30,6 +30,13 @@ public class ArticleService {
         return articleRepository.findAll(pageable);
     }
 
+    public Boolean getPageCheck(Pageable pageable) {
+        Page<Article> saved = getPageList(pageable);
+        Boolean check = saved.hasNext();
+
+        return check;
+    }
+
 //    public List<Article> getList() {
 //        List<Article> articles = articleRepository.findAll();
 //        return articles;

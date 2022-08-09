@@ -1,33 +1,42 @@
 {{>layouts/header}}
 <div class="container">
-    <table class="table" style="table-layout: fixed" >
-        <colgroup>
-            <col width="5%"/>
-            <col width="40%"/>
-            <col />
-            <col width="15%"/>
-        </colgroup>
-        <thead>
-        <tr>
-            <th scope="col" class="text-center">번호</th>
-            <th scope="col" class="text-center">제목</th>
-            <th scope="col" class="text-center">내용</th>
-            <th scope="col" class="text-center">작성날짜</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#articlePageList}}
-            <tr class="text-center">
-                <th>{{id}}</th>
-                <td width="40%" class="overflow-hidden text-center"><a href="/article/detail/{{id}}">{{title}}</a></td>
-                <td width="40%" class="overflow-hidden text-center"> {{body}}</td>
-                <td width="10%" class="overflow-hidden text-center">{{regDate}}</td>
-            </tr>
-        {{/articlePageList}}
-        </tbody>
+<table class="table" style="table-layout: fixed">
+    <colgroup>
+        <col width="5%"/>
+        <col width="40%"/>
+        <col/>
+        <col width="15%"/>
+    </colgroup>
+    <thead>
+    <tr>
+        <th scope="col" class="text-center">번호</th>
+        <th scope="col" class="text-center">제목</th>
+        <th scope="col" class="text-center">내용</th>
+        <th scope="col" class="text-center">작성날짜</th>
+    </tr>
+    </thead>
+<tbody>
+{{#articlePageList}}
+    <tr class="text-center">
+        <th>{{id}}</th>
+        <td width="40%" class="overflow-hidden text-center"><a href="/article/detail/{{id}}">{{title}}</a></td>
+        <td width="40%" class="overflow-hidden text-center"> {{body}}</td>
+        <td width="10%" class="overflow-hidden text-center">{{regDate}}</td>
+    </tr>
+{{/articlePageList}}
+    </tbody>
     </table>
-    <a href="/article/new" class="btn btn-primary me-10">생성하기</a>
-</div>
+        <a href="/article/new" class="btn btn-primary me-10">생성하기</a>
+    </div>
+    <div class="pagination justify-content-center">
+        <a class="btn btn-outline-dark mr-2 page-link" href="?page={{previous}}">이전</a>
+        {{#check}}
+            <a class="btn btn-outline-dark mr-2 page-link" href="?page={{next}}">다음</a>
+        {{/check}}
+        {{^check}}
+            <a class="disabled btn btn-outline-dark page-link" href="?page={{next}}">다음</a>
+        {{/check}}
+    </div>
 
 {{>layouts/footer}}
 

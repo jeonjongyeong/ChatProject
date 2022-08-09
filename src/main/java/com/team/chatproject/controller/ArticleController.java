@@ -45,7 +45,9 @@ public class ArticleController {
     @RequestMapping("/list")
     public String showPageList(Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         model.addAttribute("articlePageList", articleService.getPageList(pageable));
-
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("check", articleService.getPageCheck(pageable));
         return "/article/article_list";
     }
 
