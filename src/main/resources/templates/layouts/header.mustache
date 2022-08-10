@@ -18,6 +18,7 @@
 
     <!-- 스프링 부트 스트랩 -->
     <!--    <link rel="stylesheet" type="text/css" href="/bootstrap.min.css">-->
+    <link rel="font" href="/font.css">
 
 
     <!-- 데이지 UI-->
@@ -90,13 +91,13 @@
                     </ul>
                     <div class="text-end">
                         <button type="button" class="btn btn-outline-light me-2" authorize="isAnonymous()"
-                                onClick="location.href='/member/login'">Login
+                                onClick="location.href='/member/login'">로그인
                         </button>
                         <button type="button" class="btn btn-outline-light me-2" authorize="isAuthenticated()"
-                                onClick="location.href='/member/doLogout'">Logout
+                                onClick="location.href='/member/doLogout'">로그아웃
                         </button>
                         <button type="button" class="btn btn-warning" onClick="location.href='/member/signup'">
-                            Sign-up
+                            회원가입
                         </button>
 
                     </div>
@@ -111,6 +112,18 @@
 
 <title>WhatChat</title>
 </head>
+<style>
+@font-face {
+    font-family: 'HSSaemaul-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
+body {
+font-family: 'HSSaemaul-Regular';
+font-size: 20px;
+}
 
+</style>
 <body>
