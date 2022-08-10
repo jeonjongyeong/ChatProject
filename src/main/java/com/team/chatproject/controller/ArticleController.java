@@ -1,16 +1,11 @@
 package com.team.chatproject.controller;
 
 import com.team.chatproject.domain.Article;
-
-import com.team.chatproject.domain.ResultData;
 import com.team.chatproject.domain.Rq;
 import com.team.chatproject.form.ArticleForm;
-import com.team.chatproject.form.CommentForm;
 import com.team.chatproject.service.ArticleService;
-
 import com.team.chatproject.util.Ut;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,7 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Map;
@@ -37,11 +35,11 @@ public class ArticleController {
     @Autowired
     private Rq rq;
 
-
     // 전체 조회
     @RequestMapping("/list")
-    public String showList(Model model, @PageableDefault(size = 10, sort="id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public String showList(Model model,@PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable) {
         List<Article> articles = articleService.getList();
+        model.addAttribute("articles", articles);
         log.info(articles.toString());
         return "/article/article_list";
     }
@@ -111,4 +109,5 @@ public class ArticleController {
         return "redirect:/article/list";
 
     }
+
 }
