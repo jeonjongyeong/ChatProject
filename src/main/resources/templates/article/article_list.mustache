@@ -3,8 +3,9 @@
 <table class="table" style="table-layout: fixed">
     <colgroup>
         <col width="5%"/>
-        <col width="40%"/>
+        <col width="20%"/>
         <col/>
+        <col width="20%"/>
         <col width="15%"/>
     </colgroup>
     <thead>
@@ -12,6 +13,7 @@
         <th scope="col" class="text-center">번호</th>
         <th scope="col" class="text-center">제목</th>
         <th scope="col" class="text-center">내용</th>
+        <th scope="col" class="text-center">작성자</th>
         <th scope="col" class="text-center">작성날짜</th>
     </tr>
     </thead>
@@ -21,6 +23,7 @@
         <th>{{id}}</th>
         <td width="40%" class="overflow-hidden text-center"><a href="/article/detail/{{id}}">{{title}}</a></td>
         <td width="40%" class="overflow-hidden text-center"> {{body}}</td>
+        <td width="10%" class="overflow-hidden text-center">{{nickname}}</td>
         <td width="10%" class="overflow-hidden text-center">{{regDate}}</td>
     </tr>
 {{/articlePageList}}
