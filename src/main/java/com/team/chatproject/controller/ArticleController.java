@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -36,13 +35,26 @@ public class ArticleController {
     private Rq rq;
 
     // 전체 조회
+
+    // Page 조회
     @RequestMapping("/list")
-    public String showList(Model model,@PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable) {
-        List<Article> articles = articleService.getList();
-        model.addAttribute("articles", articles);
-        log.info(articles.toString());
+
+    public String showPageList(Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        model.addAttribute("articlePageList", articleService.getPageList(pageable));
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("check", articleService.getPageCheck(pageable));
         return "/article/article_list";
     }
+
+    // List 조회
+//    @RequestMapping("/list")
+//    public String showList(Model model) {
+//        List<Article> articles = articleService.getList();
+//        log.info(articles.toString());
+//        model.addAttribute("articles", articles);
+//        return "/article/article_list";
+//    }
 
     // 상세 조회
     @RequestMapping("/detail/{id}")
@@ -74,6 +86,7 @@ public class ArticleController {
         this.articleService.create(articleForm.getTitle(), articleForm.getBody());
         return "redirect:/article/list";
     }
+
     @GetMapping("/delete/{id}")
     public String articleDelete(@PathVariable Long id) {
         Article article = this.articleService.getDetail(id);
@@ -82,9 +95,9 @@ public class ArticleController {
     }
 
     @GetMapping("/modify/{id}")
-    public  String  showModifyArticle (Model model,@PathVariable Long id ){
+    public String showModifyArticle(Model model, @PathVariable Long id) {
         Article article = articleService.getDetail(id);
-        if(article==null){
+        if (article == null) {
             return Ut.jsHistoryBack("게시물이 없습니다.");
         }
         model.addAttribute("article", article);
@@ -92,7 +105,7 @@ public class ArticleController {
     }
 
     @PostMapping("/modify/{id}")
-    public String doModifyArticle(Model model, @PathVariable Long id ,@Validated ArticleForm articleForm, BindingResult bindingResult) {
+    public String doModifyArticle(Model model, @PathVariable Long id, @Validated ArticleForm articleForm, BindingResult bindingResult) {
         Article article = articleService.getDetail(id);
         if (bindingResult.hasErrors()) {
             Map<String, String> validationErrors = bindingResult.getFieldErrors()
