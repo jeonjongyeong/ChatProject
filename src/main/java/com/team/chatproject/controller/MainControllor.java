@@ -13,10 +13,7 @@ public class MainControllor {
     // 메인 페이지
     @RequestMapping("/")
     public String main() {
-        if(!rq.isLogin()){
-            return "/member/login";
-        }
-        return "/article/list";
+        return "/commen/main";
     }
 
 }
