@@ -4,6 +4,7 @@ import com.team.chatproject.domain.Article;
 import com.team.chatproject.domain.Rq;
 import com.team.chatproject.form.ArticleForm;
 import com.team.chatproject.service.ArticleService;
+import com.team.chatproject.service.MemberService;
 import com.team.chatproject.util.Ut;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,8 @@ public class ArticleController {
     private ArticleService articleService;
     @Autowired
     private Rq rq;
+    @Autowired
+    private MemberService memberService;
 
     // 전체 조회
 
@@ -122,5 +125,13 @@ public class ArticleController {
         return "redirect:/article/list";
 
     }
+    @RequestMapping("/chat")
+    public String showChat(Model model) {
+        Long id = Long.valueOf(rq.getLoginMemberId());
+        model.addAttribute("Member", memberService.getMemberByLoginId(String.valueOf(id)));
+
+        return "/chat/chat";
+    }
+
 
 }

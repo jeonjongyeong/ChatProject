@@ -91,4 +91,10 @@ public class Rq {
 	public String jsReplace(String msg,String uri) {
 		return Ut.jsReplace(msg,uri); 
 	}
+
+	//이메소드는 Rq 객체가 자연스럽게 생성되도록  유도한다.
+	//지우면 안됨
+	//편의를 위해 BeforeActionInterceptor에서 호출한다.
+	public void initOnBeforeActionInterceptor() {
+	}
 }

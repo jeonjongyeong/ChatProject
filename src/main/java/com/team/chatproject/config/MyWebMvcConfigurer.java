@@ -32,6 +32,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
                 .addPathPatterns("/article/modify")
                 .addPathPatterns("/article/doModify")
                 .addPathPatterns("/article/doDelete")
+                .addPathPatterns("/article/chat")
                 .addPathPatterns("/comment/**");
 
     }
