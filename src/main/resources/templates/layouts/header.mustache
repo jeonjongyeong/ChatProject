@@ -14,14 +14,12 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
     <meta name="generator" content="Hugo 0.88.1">
 
-    <!--    <link rel="canonical" href="https://getbootstrap.kr/docs/5.0.2/examples/headers/">-->
 
     <!-- 스프링 부트 스트랩 -->
-    <!--    <link rel="stylesheet" type="text/css" href="/bootstrap.min.css">-->
+    <link rel="font" href="/font.css">
 
 
     <!-- 데이지 UI-->
-    <!--    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.11.1/dist/full.css" rel="stylesheet" type="text/css"/>-->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.20.0/dist/full.css" rel="stylesheet" type="text/css"/>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css"/>
 
@@ -46,71 +44,51 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <!--    <style>-->
-    <!--{-->
-    <!--    .bd-placeholder-img {-->
-    <!--      font-size: 1.125rem;-->
-    <!--      text-anchor: middle;-->
-    <!--      -webkit-user-select: none;-->
-    <!--      -moz-user-select: none;-->
-    <!--      user-select: none;-->
-    <!--    }-->
-
-    <!--    @media (min-width: 768px) {-->
-    <!--      .bd-placeholder-img-lg {-->
-    <!--        font-size: 3.5rem;-->
-    <!--      }-->
-    <!--    }-->
-
-    <!--}-->
-    <!--    </style>-->
 
     <!--로고 파비콘-->
-    <div></div>
-
     <div class="b-example-divider"></div>
 
 </head>
-<div class="overflow-x-auto">
-    <table class="table table-zebra w-full">
-        <!-- 헤더 폼 -->
-        <header class="p-3 bg-info text-white">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-center">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                        <img src="/chat2.png" alt="로고이미지">
-                    </a>
 
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="/article/list" class="nav-link px-2 text-dark">Home</a></li>
-                        <li><a href="#" class="nav-link px-2 text-dark">게시판</a></li>
-                        <li><a href="http://localhost:8234/" class="nav-link px-2 text-dark">Chat</a></li>
-                        <li><a href="#" class="nav-link px-2 text-dark">FAQs</a></li>
-                        <li><a href="#" class="nav-link px-2 text-dark">About</a></li>
-                    </ul>
-                    <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2" authorize="isAnonymous()"
-                                onClick="location.href='/member/login'">Login
-                        </button>
-                        <button type="button" class="btn btn-outline-light me-2" authorize="isAuthenticated()"
-                                onClick="location.href='/member/doLogout'">Logout
-                        </button>
-                        <button type="button" class="btn btn-warning" onClick="location.href='/member/signup'">
-                            Sign-up
-                        </button>
 
+<!--tailwinds navbar-->
+<nav class="bg-white">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div class="relative flex items-center justify-between h-16">
+            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                <!-- Mobile menu button-->
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img  alt="로고이미지">
+                </a>
+            </div>
+            <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                <div class="flex-shrink-0 flex items-center">
+                    <img class="block h-11 w-auto"
+                         src="/chat2.png" alt="로고이미지">
+                    <p class="block h-8 w-auto">WhatChat</p>
+                </div>
+                <div class="hidden sm:block sm:ml-6">
+                    <div class="flex space-x-4">
+                        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                        <a href="/"
+                           class="text-gray-500 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md font-medium">Home</a>
+
+                        <a href="article/list"
+                           class="text-gray-500 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">게시판</a>
+
+                        <a href="http://localhost:8234/"
+                           class="text-gray-500 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">채팅</a>
                     </div>
                 </div>
             </div>
-        </header>
-        <!-- 헤더 폼여기까지 -->
-    </table>
-</div>
-<!--스타일 여기까지 -->
+        </div>
+    </div>
+</nav>
 
+<!-- Tailwind CSS CDN Links -->
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
 <title>WhatChat</title>
 </head>
-
-
+{{>css/font}}
 <body>
